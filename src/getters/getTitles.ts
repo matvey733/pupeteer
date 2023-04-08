@@ -3,7 +3,7 @@ import { titleSelector } from "../utils/selectors";
 
 
 export default async function getTitles(page: Page, productsHandle: ElementHandle[]) {
-  let titles = "";
+  const titles: string[] = [];
 
   for (const productHandle of productsHandle) {
     // callback passed to page.evaluate() is run in the context of the puppeteer webpage.
@@ -14,8 +14,8 @@ export default async function getTitles(page: Page, productsHandle: ElementHandl
       productHandle,
       titleSelector
     )
-    
-    titles += `${title}\n\n`;
+
+    titles.push(`${title}`);
   }
 
   return titles;

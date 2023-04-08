@@ -6,6 +6,7 @@ import { productsSelector } from "./utils/selectors";
 import prompt from "./utils/prompt";
 import getTitles from "./getters/getTitles";
 import saveToFile from "./utils/saveToFile";
+import getPrices from "./getters/getPrices";
 
 
 (async () => {
@@ -17,8 +18,10 @@ import saveToFile from "./utils/saveToFile";
   
   const productsHandle = await page.$$(productsSelector);
   const titles = await getTitles(page, productsHandle);
+  console.log(titles);
+  const prices = await getPrices(page, productsHandle);
 
-  saveToFile(path.join(__dirname, "../titles.txt"), titles)
+  console.log(prices);
 
   await browser.close()
 })();
